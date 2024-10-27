@@ -4,7 +4,7 @@ import Image from "next/image";
 import "@/styles/blog.css"
 
 const fetchSingleBlog = async(slug)=> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/get/${slug}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/get/${slug}`, { next: {tags: [slug]}})
     const data = await res.json();
     console.log(data, 'single blog')
     return data;

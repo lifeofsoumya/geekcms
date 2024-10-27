@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { storage } from "@/static/firebaseConfig"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import Image from "next/image";
 
 
 
 
-export default function ImageUpload({ returnImage }){
+export default function ImageUpload({ returnImage, preloadedImage }){
     const [imageasFile, setImageAsFile] = useState();
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState(null);
@@ -33,6 +34,16 @@ export default function ImageUpload({ returnImage }){
         } finally {
             setLoading(false);
         }
+    }
+
+    if(preloadedImage){
+        return <div>
+            <label className="w-fit">
+                <span className="bg-gray-500/10 border-2 border-gray-500 border-dashed p-3 rounded w-[300px]">Update Cover image</span>
+                <input type="file" onChange={handleImageAsFile} hidden />
+            </label>
+            <Image className="border border-gray-400 rounded-md" width={300} height={170} src={preloadedImage} alt="upload image"  />
+         </div>
     }
     return <div className="py-2 flex flex-col gap-5 w-full">
         <label className="w-fit">
