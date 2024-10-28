@@ -34,7 +34,7 @@ export default async function Blogs(){
         <section className="grid gap-4 grid-cols-2 md:grid-cols-3 p-8">
             {
                 blogData.map((blog, index)=> {
-                    return <BlogCard title={blog.title} excerpt={blog.excerpt} image={blog.thumbnail} url={blog.slug} />
+                    return <BlogCard key={blog.title} title={blog.title} excerpt={blog.excerpt} image={blog.thumbnail} url={blog.slug} />
                 })
             }
         </section>
