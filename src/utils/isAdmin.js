@@ -1,7 +1,7 @@
 const listOfAdmins = [
     'test@gmail.com',
     'admin@geekcms.com',
-    // 'dcoder.sm@gmail.com'
+    'dcoder.sm@gmail.com'
 ]
 
 export default async function isAdmin(session){

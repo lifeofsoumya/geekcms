@@ -3,6 +3,7 @@ import { Calendar } from "lucide-react";
 import Image from "next/image";
 import "@/styles/blog.css"
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 const fetchSingleBlog = async(slug)=> {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/get/${slug}`, { next: {tags: [slug]}})
@@ -36,9 +37,15 @@ export default async function SingleBlog({ params }){
                 {post.thumbnail && <Image className="rounded border w-[90%] md:w-[700px]" src={post.thumbnail} width={500} height={250} alt={post.title}/>}
                 <h1 className="text-2xl md:text-4xl font-bold">{post.title}</h1>
                 <div className="meta-of-a-blog space-y-2">
-                    <div className="flex gap-2 items-center">
-                        <Calendar className="text-gray-400 size-4" />
-                        <p className="text-gray-400 text-xs">Created on: {dateFormat(post.createdAt)}</p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <div className="flex gap-2 items-center">
+                            <Calendar className="text-gray-400 size-4" />
+                            <p className="text-gray-400 text-xs">Created on: {dateFormat(post.createdAt)}</p>
+                        </div>
+                        <Link className="flex items-center gap-2" href={`/user/${post.authorId}`}>
+                            <Image className="rounded-full" src={post.author.image} width={20} height={20} />
+                            <p className="text-xs text-gray-400">{post.author.name}</p>
+                        </Link>
                     </div>
                     <div className="text-xs flex items-center gap-2">
                         <p>Category:</p>
