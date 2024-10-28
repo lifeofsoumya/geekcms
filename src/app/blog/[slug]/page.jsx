@@ -11,7 +11,7 @@ const fetchSingleBlog = async(slug)=> {
         notFound();
     }
     const data = await res.json();
-    console.log(data, 'single blog')
+    // console.log(data, 'single blog')
     return data;
 }
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }){
         title: res.title,
         description: res.excerpt,
         openGraph: {
-            images: [res.thumbnail]
+            images: [`${process.env.NEXT_PUBLIC_BASE_URL}/api/og?title=${res.title}`]
         }
     }
 }
