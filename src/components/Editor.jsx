@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { slugify } from "slugmaster";
 import ImageUpload from "./ImageUpload";
@@ -22,6 +22,9 @@ import {
 } from "@/components/ui/dialog"
 import AIContent from "@/utils/ai-content";
 import { Sparkles } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(import("react-quill"), { ssr: false })
 
 const schema = z.object({
   title: z.string().min(10, { message: 'Title must contain 10 or more characters'}).min(1, { message: "Title must not be empty"}),
