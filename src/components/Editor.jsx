@@ -24,7 +24,7 @@ import AIContent from "@/utils/ai-content";
 import { Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const ReactQuill = dynamic(import("react-quill"), { ssr: false })
+const ReactQuill = dynamic(()=> import("react-quill"), { ssr: false })
 
 const schema = z.object({
   title: z.string().min(10, { message: 'Title must contain 10 or more characters'}).min(1, { message: "Title must not be empty"}),
